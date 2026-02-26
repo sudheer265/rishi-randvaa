@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Royal Bangles</title>
+<style>
+body { margin:0; font-family:Arial; background:#fff8f2; }
+header { background:#b76e79; color:white; padding:15px; display:flex; justify-content:space-between; align-items:center; }
+nav a { color:white; margin:0 10px; text-decoration:none; font-weight:bold; }
+.hero { text-align:center; padding:40px 20px; }
+.btn { background:#b76e79; color:white; padding:10px 20px; border:none; border-radius:20px; cursor:pointer; }
+.products { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; padding:20px; }
+.card { background:white; padding:15px; border-radius:10px; width:200px; box-shadow:0 4px 8px rgba(0,0,0,0.1); text-align:center; }
+.card img { width:100%; border-radius:10px; }
+.cart { position:fixed; top:15px; right:20px; background:white; padding:10px 15px; border-radius:20px; box-shadow:0 4px 8px rgba(0,0,0,0.2); }
+.whatsapp { position:fixed; bottom:20px; right:20px; background:#25D366; color:white; padding:15px 20px; border-radius:50px; text-decoration:none; font-weight:bold; }
+footer { background:#b76e79; color:white; text-align:center; padding:15px; margin-top:20px; }
+</style>
+</head>
+<body>
+
+<header>
+<h1>Rishi chakka Bangles</h1>
+<nav>
+<a href="#">Home</a>
+<a href="#products">Shop</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+
+<div class="cart">
+🛒 Cart: <span id="cart-count">0</span> | $<span id="cart-total">0</span>
+</div>
+
+<section class="hero">
+<h2>Elegant Bangles for Every Occasion</h2>
+<p>Traditional | Modern | Bridal Collections</p>
+</section>
+
+<section id="products" class="products">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d">
+<h3>Gold Bangles</h3>
+<p>$49</p>
+<button class="btn" onclick="addToCart('Gold Bangles',49)">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1608042314453-ae338d80c427">
+<h3>Bridal Set</h3>
+<p>$89</p>
+<button class="btn" onclick="addToCart('Bridal Set',89)">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1620119632060-9e5f5b9fc5f4">
+<h3>Colorful Bangles</h3>
+<p>$29</p>
+<button class="btn" onclick="addToCart('Colorful Bangles',29)">Add to Cart</button>
+</div>
+
+</section>
+
+<a id="whatsappBtn" class="whatsapp" target="_blank">Order on WhatsApp</a>
+
+<footer id="contact">
+<p>📍 123 lanjala kompa</p>
+<p>📞 +91 938175799</p>
+<p>© 2026 Roishi chakka Bangles</p>
+</footer>
+
+<script>
+let cart = [];
+let total = 0;
+
+function addToCart(name, price){
+    cart.push({name, price});
+    total += price;
+    document.getElementById("cart-count").innerText = cart.length;
+    document.getElementById("cart-total").innerText = total;
+    updateWhatsApp();
+}
+
+function updateWhatsApp(){
+    let message = "Hello, I want to order:%0A";
+    cart.forEach(item => {
+        message += "- " + item.name + " ($" + item.price + ")%0A";
+    });
+    message += "%0ATotal: $" + total;
+    document.getElementById("whatsappBtn").href =
+    "https://wa.me/9381275799?text=" + message;  // 🔴 Replace with your WhatsApp number
+}
+</script>
+
+</body>
+</html>
